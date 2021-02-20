@@ -1,0 +1,123 @@
+<%- include('parts/user.header.ejs') %>
+    <%- include('parts/user.navbar.ejs') %>
+
+        <section class="product-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="product-image">
+                            <img src="../<%= product.image %>" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="product-details">
+                            <h1 class="mb-4">
+                                <%= product.name %>
+                            </h1>
+                            <p class="desc">
+                                <%= product.description %>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis, laudantium
+                                    sit amet consectetur adipisicing elit. Facilis, laudantium.,
+                            </p>
+                            <p class="price">
+                                $<%= product.price %> USD
+                            </p>
+                            <p class="provider">
+                                <span>Provider: </span>
+                                <%= product.author %>
+                            </p>
+                            <ul class="mb-4">
+                                <% for(let i=0; i < parseInt(rate); i++) { %>
+                                    <i class="fa fa-star active"></i>
+                                    <% } %>
+                                        <% for(let i=parseInt(rate); i < 5; i++) { %>
+                                            <i class="fa fa-star"></i>
+                                            <% } %>
+                            </ul>
+
+                            <a href="/cart">ADD TO CART</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="mt-5">
+                <% if(isUser) { %>
+                    <div class="row mt-5 mb-5">
+                        <div class="rating d-flex justify-content-center w-100">
+                            <div class="person-image text-center mr-4">
+                                <img src="../idea.png" alt="" width="100px">
+                                <br>
+                                <span>
+                                    <%= user.firstName + ' ' + user.lastName %>
+                                </span>
+                            </div>
+                            <div class="form-comment w-100">
+                                <form action="/comment" method="POST">
+                                    <select name="rate" id="" class="form-control mb-3">
+                                        <option value="1">Choose product stars</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <textarea class="form-control" name="comment" id="" cols="30" rows="5"
+                                        placeholder="Type your comment"></textarea>
+                                    <input type="hidden" name="username"
+                                        value="<%= user.firstName + ' ' + user.lastName %>" />
+                                    <input type="hidden" value="<%= product._id %>" name="productId">
+                                    <input type="submit" value="Comment" class="btn btn-primary mt-3">
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <% } %>
+                        <% if(comments.length> 0) {%>
+                            <div class="row mb-5">
+                                <% for(let comment of comments) {%>
+                                    <div class="comments w-100 text-center">
+                                        <div class="rating d-flex justify-content-center w-100">
+
+                                            <div class="form-comment w-100">
+                                                <div class="person-image text-center" class="mb-3">
+                                                    <img src="../idea.png" alt="" width="100px">
+                                                    <br>
+                                                    <span>
+                                                        <%= comment.username %>
+                                                    </span>
+                                                </div>
+                                                <ul class="mb-3 mt-3">
+                                                    <!-- <li>
+                                                        <i class="fa fa-star active"></i>
+                                                        <i class="fa fa-star active"></i>
+                                                        <i class="fa fa-star active"></i>
+                                                        <i class="fa fa-star active"></i>
+                                                        <i class="fa fa-star"></i>
+                                                    </li> -->
+                                                    <% for(let i=0; i < parseInt(comment.rate); i++) { %>
+                                                        <i class="fa fa-star active"></i>
+                                                        <% } %>
+                                                            <% for(let i=parseInt(comment.rate); i < 5; i++) { %>
+                                                                <i class="fa fa-star"></i>
+                                                                <% } %>
+                                                </ul>
+                                                <div class="comment">
+                                                    <p>
+                                                        <%= comment.comment %>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <% } else { %>
+                                <div class="container text-center">
+                                    <div class="alert alert-danger">No Comments for this product yet</div>
+                                </div>
+                                <% } %>
+            </div>
+        </section>
+        <%- include('parts/user.footer.ejs') %>

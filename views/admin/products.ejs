@@ -1,0 +1,22 @@
+<%- include('parts/user.header.ejs') %>
+<%- include('parts/user.navbar.ejs') %>
+
+<section class="mainAdmin text-center" style="background-color: #eeeeee; padding: 50px 0;">
+    <div class="container">
+        <div class="row">
+            <% if (typeof products !== 'undefined') { %>
+                <% for (let i =0; i < products.length; i++) { %>
+              <div class="col-lg-3" style="margin-top: 40px;">
+                <div class="product-content" style="background-color: #ffffff;">
+                  <img src="../../<%= products[i].image %>" alt="Product" height="200px">
+                  <h5><%= products[i].name %></h5>
+                  <p style="height: 20px;">$<%= products[i].price %></p>
+                  <a href="/custom/updateProduct/<%= products[i]._id %>">Update</a>
+                  <a href="/custom/deleteProduct/<%= products[i]._id %>">Delete</a>
+                </div>
+              </div>
+              <% }} %>
+        </div>
+    </div>
+</section>
+<%- include('parts/user.footer.ejs') %>

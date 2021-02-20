@@ -1,0 +1,146 @@
+<%- include('parts/user.header.ejs') %>
+<%- include('parts/user.navbar.ejs') %>
+
+<section class="loginGrace registerGrace text-center">
+    <div class="container">
+        <div class="login-content">
+        <h1>REGISTRATION</h1>
+        <div class="bt-divider"></div>
+        <h4>Create a new account</h4>
+        <br> <br>
+        <form action="/register" method="POST">
+            <% if(typeof err !== 'undefined') { %>
+                <div style="margin-bottom: 30px; color: #f00; margin-bottom: 10px;"><%= err %><br><br></div>
+            <% } %>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <% if(typeof firstName !== 'undefined') { %>
+                                <input type="text" placeholder="First Name" name="firstName" value="<%= firstName %>" />
+                            <% } else { %>
+                                <input type="text" placeholder="First Name" name="firstName"/>
+                            <% } %>
+                         
+                        </div>
+                        <div class="errors text-left" style="padding-left: 15px;">
+                            <% if(typeof validateErrors !== 'undefined') { %>
+                              <% for(let i =0; i < validateErrors.length; i++) { %>
+                                  <% if(validateErrors[i].param == 'firstName') { %>
+                                      <div style="margin-top: 10px; color: #f00;"><%= validateErrors[i].msg %></div>
+                            <% }}} %>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <% if(typeof lastName !== 'undefined') { %>
+                                <input type="text" placeholder="Last Name" name="lastName" value="<%= lastName %>" />
+                            <% } else { %>
+                                <input type="text" placeholder="Last Name" name="lastName">
+                            <% } %>
+                          
+                        </div>
+                        <div class="errors text-left" style="padding-left: 15px;">
+                            <% if(typeof validateErrors !== 'undefined') { %>
+                              <% for(let i =0; i < validateErrors.length; i++) { %>
+                                  <% if(validateErrors[i].param == 'lastName') { %>
+                                      <div style="margin-top: 10px; color: #f00;"><%= validateErrors[i].msg %></div>
+                            <% }}} %>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <% if(typeof address !== 'undefined') { %>
+                                <input type="text" placeholder="Address" name="address" value="<%= address %>" />
+                            <% } else { %>
+                                <input type="text" placeholder="Address" name="address">
+                            <% } %>
+                          
+                        </div>
+                        <div class="errors text-left" style="padding-left: 15px;">
+                          <% if(typeof validateErrors !== 'undefined') { %>
+                            <% for(let i =0; i < validateErrors.length; i++) { %>
+                                <% if(validateErrors[i].param == 'address') { %>
+                                    <div style="margin-top: 10px; color: #f00;"><%= validateErrors[i].msg %></div>
+                          <% }}} %>
+                      </div>
+                      </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <% if(typeof phoneNumber !== 'undefined') { %>
+                                <input type="number" placeholder="Phone Number" name="phoneNumber" value="<%= phoneNumber %>" />
+                            <% } else { %>
+                                <input type="number" placeholder="Phone Number" name="phoneNumber">
+                            <% } %>
+                          
+                        </div>
+                        <div class="errors text-left" style="padding-left: 15px;">
+                            <% if(typeof validateErrors !== 'undefined') { %>
+                              <% for(let i =0; i < validateErrors.length; i++) { %>
+                                  <% if(validateErrors[i].param == 'phoneNumber') { %>
+                                      <div style="margin-top: 10px; color: #f00;"><%= validateErrors[i].msg %></div>
+                            <% }}} %>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <% if(typeof email !== 'undefined') { %>
+                                <input type="email" placeholder="Email" name="email" value="<%= email %>" />
+                            <% } else { %>
+                                <input type="email" placeholder="Email" name="email">
+                            <% } %>
+                          
+                        </div>
+                        <div class="errors text-left" style="padding-left: 15px;">
+                            <% if(typeof validateErrors !== 'undefined') { %>
+                              <% for(let i =0; i < validateErrors.length; i++) { %>
+                                  <% if(validateErrors[i].param == 'email') { %>
+                                      <div style="margin-top: 10px; color: #f00;"><%= validateErrors[i].msg %></div>
+                            <% }}} %>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                          <input type="password" placeholder="Password" name="password">
+                        </div>
+                        <div class="errors text-left" style="padding-left: 15px;">
+                            <% if(typeof validateErrors !== 'undefined') { %>
+                              <% for(let i =0; i < validateErrors.length; i++) { %>
+                                  <% if(validateErrors[i].param == 'password') { %>
+                                      <div style="margin-top: 10px; color: #f00;"><%= validateErrors[i].msg %></div>
+                            <% }}} %>
+                        </div>
+                      </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary">Register</button>
+              </div>
+            </div>
+          </form>
+          <br>
+          <hr>
+          <br>
+          <h4>Already have an acount!</h4>
+          <a href="/login" class="btn btn-primary reg">Login</a>
+        </div>
+    </div>
+</section>
+<%- include('parts/user.footer.ejs') %>

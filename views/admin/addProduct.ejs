@@ -1,0 +1,68 @@
+<%- include('parts/user.header.ejs') %>
+<%- include('parts/user.navbar.ejs') %>
+
+
+
+<div class="container" style="padding-top: 20px;">
+    <form action="/custom/addproduct" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="exampleInputName">Name</label>
+            <br><br>
+            <input  type="text" class="form-control" required id="exampleInputName" 
+                name="name" <% if (typeof product !== 'undefined') {%> value="<%= product.name%>" <% } %>>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Price</label>
+            <br><br>
+            <input  type="number" class="form-control" required id="exampleInputEmail1"
+                name="price" <% if (typeof product !== 'undefined') {%> value="<%= product.price%>" <% } %>>
+           
+        </div>
+        <div class="form-group">
+            <label for="exampleInputNumer">Category</label>
+            <br><br>
+            <select name="category" id="exampleInputNumer" class="form-control" required>
+                <% if (typeof categories !== 'undefined') {%> 
+                    <% categories.map(cat => { %>
+                        <option value="<%= cat._id %>"><%= cat.name %></option>
+                   <% }) %>
+                <% } %>
+            </select>
+        </div>
+        <% if (typeof brands !== 'undefined') {%> 
+        <div class="form-group">
+            <label for="exampleInputNumer">Brand</label>
+            <br><br>
+            <select name="brand" id="exampleInputNumer" class="form-control" required>
+                
+                    <% brands.map(brand => { %>
+                        <option value="<%= brand._id %>"><%= brand.name %></option>
+                   <% }) %>
+                
+            </select>
+        </div>
+        <% } %>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Description</label>
+            <br><br>
+            <textarea class="form-control" required id="exampleInputPassword1" name="description" ><% if (typeof product !== 'undefined') {%><%= product.description%> <% } %></textarea>
+        </div>
+        <div class="form-group">
+            <input  type="hidden" class="form-control" required id="exampleInputNumer"
+                name="id" <% if (typeof product !== 'undefined') {%> value="<%= product.id%>"<% } %>>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputImage">Image</label>
+            <br><br>
+            <input type="file" class="form-control" required id="exampleInputImage" name="image">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+
+
+
+<%- include('parts/user.footer.ejs') %>

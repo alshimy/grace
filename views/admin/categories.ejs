@@ -1,0 +1,33 @@
+<%- include('parts/user.header.ejs') %>
+<%- include('parts/user.navbar.ejs') %>
+
+
+<section class="addCat">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <form action="/custom/addCategory" method="post">
+                    <input type="text" name="name" placeholder="Name of category" class="form-control" required>
+                    <br>
+                    <input type="submit" value="New Category" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mainAdmin text-center" style="padding: 30px 0;">
+    <div class="container">
+        <div class="row">
+            <% if (typeof categories !== 'undefined') { %>
+                <% for (let i =0; i < categories.length; i++) { %>
+              <div class="col-lg-3" style="margin-top: 40px;">
+                <div class="product-content" style="background-color: #666666;padding: 50px 0; color: white;">
+                  <a style="background-color: transparent;" href="/custom/category/<%= categories[i]._id %>"><h5><%= categories[i].name %></h5></a>
+                </div>
+              </div>
+              <% }} %>
+        </div>
+    </div>
+</section>
+<%- include('parts/user.footer.ejs') %>

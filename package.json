@@ -1,0 +1,48 @@
+{
+  "name": "grace",
+  "version": "1.0.0",
+  "description": "Node js online shop to buy watches",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^2.4.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.9.2",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.10",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdelrahman-Elshimy/grace.git"
+  },
+  "keywords": [
+    "Node",
+    "Js",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Bootstrap"
+  ],
+  "engines": {
+    "node": "14.15.1",
+    "npm": "6.14.8"
+  },
+  "author": "Abdelrahman Lotfy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdelrahman-Elshimy/grace/issues"
+  },
+  "homepage": "https://github.com/Abdelrahman-Elshimy/grace#readme"
+}
